@@ -1,8 +1,21 @@
 <div class="menu">
-  <input id="showNumbers" type="checkbox" [(ngModel)]="this.showNumCat" style='display: none;'/>
-  <label for="showNumbers">
-    {{showNumCat?'Show rating':'Show score'}}
-</label>
+  <ul>
+      <li><input id="showNumbers" type="checkbox" [(ngModel)]="this.showNumCat" style='display: none;'/>
+        <label for="showNumbers">
+          {{showNumCat?'Show rating':'Show score'}}
+      </label></li>
+      <li><input id="showPics" type="checkbox" [(ngModel)]="this.showPics" style='display: none;'/>
+        <label for="showPics">
+          {{showPics?'Hide pictures':'Show pictures'}}
+        </label>
+      </li>
+      <li>
+        <h2>Zoek naar:
+            <input #searchString (keyup.enter)="search(searchString.value)" type="text" />
+            <button (click)="search(searchString.value)">Zoek</button>
+          </h2>
+      </li>
+  </ul>
 </div>
 <div
   class="movie"
@@ -13,7 +26,10 @@
   let even = even;"
   [ngClass]="{ odd: odd, even: even }"
   >
-  <h2>{{i + 1}}. {{movie.title}}</h2>
-  <span class='label score'>Score </span>
-  <span class='value score' [ngClass]='scoreCategory(movie.vote_average)'>{{score(movie.vote_average)}}</span><br />
+  <div class="movieContent">
+    <h2>{{i + 1}}. {{movie.title}}</h2>
+    <span class='label score'>Score </span>
+    <span class='value score' [ngClass]='scoreCategory(movie.vote_average)'>{{score(movie.vote_average)}}</span><br />
+  </div>
+  <div class="movieContent"><img src="{{movie.poster_path}}" *ngIf="showPics" class="picture" /></div>
 </div>

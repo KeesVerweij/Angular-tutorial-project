@@ -23,3 +23,12 @@ span.bad   { color: #ff0000; }
 div.movie.odd {
   background-color: #b3b3b3;
 }
+
+img.picture {
+  height: 250px;
+}
+
+/* div.movieContent {
+  display: inline-block;
+  height: 100%;
+} */

@@ -11,11 +11,13 @@ import { TheMovieDBService } from '../the-movie-db.service';
 export class SearchFilmsComponent implements OnInit {
   movies: Movie[] = [];
   showNumCat = false;
+  showPics = true;
 
   constructor(private theMovieDBService: TheMovieDBService) { }
 
   ngOnInit() {
-    this.movies = this.theMovieDBService.getData();
+    const movieSearchResults = this.theMovieDBService.getData();
+    this.movies = movieSearchResults.results;
   }
 
   score(score: number) {
@@ -35,6 +37,27 @@ export class SearchFilmsComponent implements OnInit {
       return 'ok';
     } else {
       return 'bad';
+    }
+  }
+
+  search(searchString: string) {
+    console.log(searchString);
+    this.movies = [];
+    const movieSearchResults = this.theMovieDBService.getData();
+    const movies = movieSearchResults.results;
+    if (searchString.toLowerCase() === 'all'){
+      this.movies = movies;
+    } else {
+      for (const movie of movies) {
+        if (movie.title.toLowerCase().search(searchString.toLowerCase()) !== -1) {
+          this.movies.push(movie);
+        }
+      }
+      console.log(this.movies);
+      if (this.movies.length === 0) {
+        this.movies.push(new Movie(0, 'Niet gevonden', null, null, 0));
+
+      }
     }
   }
 
