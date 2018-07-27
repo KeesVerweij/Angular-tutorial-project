@@ -1,0 +1,25 @@
+body {
+  font-size: 12px;
+}
+div.movie {
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f0f0f0;
+}
+span.label {
+  width: 100px;
+  display: inline-block;
+}
+span.value {
+  display: inline-block;
+  font-weight: bold;
+}
+span.great { color: #3EB300; }
+span.good  { color: #669900; }
+span.ok    { color: #aaaa33; }
+span.bad   { color: #ff0000; }
+
+div.movie.odd {
+  background-color: #b3b3b3;
+}

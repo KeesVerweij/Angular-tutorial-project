@@ -1,0 +1,19 @@
+<div class="menu">
+  <input id="showNumbers" type="checkbox" [(ngModel)]="this.showNumCat" style='display: none;'/>
+  <label for="showNumbers">
+    {{showNumCat?'Show rating':'Show score'}}
+</label>
+</div>
+<div
+  class="movie"
+  *ngFor="
+  let movie of movies;
+  let i = index;
+  let odd = odd;
+  let even = even;"
+  [ngClass]="{ odd: odd, even: even }"
+  >
+  <h2>{{i + 1}}. {{movie.title}}</h2>
+  <span class='label score'>Score </span>
+  <span class='value score' [ngClass]='scoreCategory(movie.vote_average)'>{{score(movie.vote_average)}}</span><br />
+</div>
